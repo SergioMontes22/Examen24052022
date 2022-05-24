@@ -1,94 +1,120 @@
-﻿
-using System;
-
-
-//namespace EDexamenT6a8
-
-class cafetera
+﻿//namespace EDexamenT6a8
+/// <summary>
+/// <para> Se han encapsulados los campos ya que no deben estar públicos por eso los combertir en propiedades.
+///  Se ha realizado un Renombre de los nombres de los campos a nombres mas significativos.
+///  También se ha realizado una Reordenacion de los parámetros ya que el constructor debe ir despues de la declaración de los campos y propiedades.
+///  Además se ha realizado la Eliminación de los parámetros this ya que no eran necesarios.
+///  <remarks> Estas son las Refactorizaciones del código</remarks></para>
+///  
+/// </summary>
+class Cafetera
 {
-    public cafetera(string m, string r, double agua, double totaldecapsulas)
+    /// <remarks>
+    /// Se han utilizado lineas en blanco para leer mejor el código y se han cambiado las declaraciones de las variables ya que los nombres eran poco descriptivos y utilzando el estilo caMel
+    /// Los métodos han sido reescritos al metodo PasCal y utilizando verbos
+    /// </remarks>
+    public string Marca { get; set; }
+    public string Referencia { get; set; }
+    public double Agua { get; set; }
+    public double TotalDeCapsulas { get; set; }
+
+
+    public Cafetera(string marca, string referencia, double agua, double totalDeCapsulas)
     {
-        this.m = m; //marca de la máquina cafetera
-        this.r = r; //referencia del modelo
-        this.totaldecapsulas = totaldecapsulas; //Total de cápsulas en la máquina. 
-        this.agua = agua; //Cantidad de agua en el recipiente. 
-        }
-
-
-
-
-
-    public string m;
-    public string r;
-    public double agua;
-    public double totaldecapsulas;
-
-
-    public string consumoagua(double numerodecafe) //numero de cafés a hacer
+        Marca = marca; //marca de la máquina cafetera
+        Referencia = referencia; //referencia del modelo
+        TotalDeCapsulas = totalDeCapsulas; //Total de cápsulas en la máquina. 
+        Agua = agua; //Cantidad de agua en el recipiente. 
+    }
+    /// <summary>
+    /// Método que calcula el consumo de agua dependiendo del numero de cafe que se desea hacer
+    /// </summary>
+    /// <param name="numeroDeCafe">Valor de tipo double que nos da a conocer el numero de cafés a hacer</param>
+    /// <returns>Un string que nos muestra la cantidad de agua</returns>
+    public string ObtenerConsumoAgua(double numeroDeCafe) //numero de cafés a hacer
     {
         double constante = 0.1;
-        this.agua = this.agua - numerodecafe * constante; // Constante de consumo de agua 0.1l por cada unidad de café. 
-        if (this.agua < 0.1)
-        {   this.agua = 0;
+        Agua = Agua - numeroDeCafe * constante; // Constante de consumo de agua 0.1l por cada unidad de café. 
+        if (Agua < 0.1)
+        {
+            Agua = 0;
             return "Falta agua en el depósito, por favor, revisar los niveles.";
         }
-        else{ return "Quedan" + this.agua + " centilitros";}
+        else
+        {
+            return "Quedan" + Agua + " centilitros";
+        }
     }
 
-    public string consumocapsulas(double numerodecafe) //Hacer un café 
+    /// <summary>
+    /// Método que calcula el consumo de cápsulas de café dependiendo del numero de café que se desea hacer
+    /// </summary>
+    /// <param name="numeroDeCafe">Valor de tipo double que nos da a conocer el numero de cafés a hacer</param>
+    /// <returns>Un string que nos muestra la cantidad de cápsulas</returns>
+    public string ObtenerConsumoCapsulas(double numeroDeCafe) //Hacer un café 
     {
-        this.totaldecapsulas = this.totaldecapsulas - numerodecafe;
-        if (this.totaldecapsulas < 0)
+        TotalDeCapsulas = TotalDeCapsulas - numeroDeCafe;
+        if (TotalDeCapsulas < 0)
         {
-            this.totaldecapsulas = 0;
+            TotalDeCapsulas = 0;
             return "Faltan cápsulas en el depósito, por favor, compre cápsulas.";
         }
-        else {
-            return "Quedan" + this.totaldecapsulas + "unidades";
+        else
+        {
+            return "Quedan" + TotalDeCapsulas + "unidades";
         }
     }
 
-    public double reponercapsulas(double cantidadcapsulas)
+    /// <summary>
+    /// Este método nos permite reponer el número de capsulas que tiene la clase
+    /// </summary>
+    /// <param name="cantidadCapsulas">Valor de tipo double que nos da a conocer el numero de cápsulas para reponer</param>
+    /// <returns>Un double con el total de cápsulas</returns>
+    public double ReponerCapsulas(double cantidadCapsulas)
     {
-        this.totaldecapsulas = this.totaldecapsulas + cantidadcapsulas;
-        return this.totaldecapsulas;
-    }
-    public double llenardep(double litros)
-    {
-        this.agua = this.agua + litros;
-        return this.agua;
-    }
-
-
-    public void verespecificacion(string r, string m)
-    {
-        this.m = m;
-        this.r = r;
+        TotalDeCapsulas = TotalDeCapsulas + cantidadCapsulas;
+        return TotalDeCapsulas;
     }
 
+    /// <summary>
+    /// Método que nos permite llenar el deposito de agua
+    /// </summary>
+    /// <param name="litros">Valor de tipo double que nos da a conocer la cantidad de litros que deseamos rellenar</param>
+    /// <returns>Un double con la cantidad de agua</returns>
+    public double LlenarDeposito(double litros)
+    {
+        Agua = Agua + litros;
+        return Agua;
+    }
+
+    /// <summary>
+    /// Método que nos permite cambiar las especificaciones de la cafetera
+    /// </summary>
+    /// <param name="referencia">Es un string que nos permite indicar la nueva referencia de modelo de la cafetera</param>
+    /// <param name="marca">Es un string que nos permite indicar la nueva marca de la cafetera</param>
+    public void CambiarEspecificacion(string referencia, string marca)
+    {
+        Marca = marca;
+        Referencia = referencia;
+    }
 }
 
 
-class ejemplodemicafetera
+class CafeteraEjemplo
 {
-
-    static void main()
+    static void Main()
     {
+     ///<example>Este es un ejemplo de instacia y muestra de los datos y métodos de la clase Cafetera</example>
+        Cafetera ejemploDeMiCafetera = new Cafetera("EspressoBarista", "Procoffee", 0.6, 7);
 
-
-        cafetera mi_cafetera_ejemplo = new cafetera("EspressoBarista", "Procoffee", 0.6, 7);
-
-        Console.WriteLine(mi_cafetera_ejemplo.agua);
-        Console.WriteLine(mi_cafetera_ejemplo.consumocapsulas(5));
-        Console.WriteLine(mi_cafetera_ejemplo.totaldecapsulas);
-        Console.WriteLine(mi_cafetera_ejemplo.consumoagua(5));
-        Console.WriteLine(mi_cafetera_ejemplo.agua);
-        mi_cafetera_ejemplo.llenardep(0.5);
-        Console.WriteLine(mi_cafetera_ejemplo.agua);
-        mi_cafetera_ejemplo.reponercapsulas(3);
-        Console.WriteLine(mi_cafetera_ejemplo.totaldecapsulas);
-
-
+        Console.WriteLine(ejemploDeMiCafetera.Agua);
+        Console.WriteLine(ejemploDeMiCafetera.ObtenerConsumoCapsulas(5));
+        Console.WriteLine(ejemploDeMiCafetera.TotalDeCapsulas);
+        Console.WriteLine(ejemploDeMiCafetera.ObtenerConsumoAgua(5));
+        Console.WriteLine(ejemploDeMiCafetera.Agua);
+        ejemploDeMiCafetera.LlenarDeposito(0.5);
+        Console.WriteLine(ejemploDeMiCafetera.Agua);
+        ejemploDeMiCafetera.ReponerCapsulas(3);
+        Console.WriteLine(ejemploDeMiCafetera.TotalDeCapsulas);
     }
-
 }
