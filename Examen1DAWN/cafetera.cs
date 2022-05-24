@@ -1,11 +1,10 @@
 ﻿//namespace EDexamenT6a8
 /// <summary>
-/// <para> Se han encapsulados los campos ya que no deben estar públicos por eso los combertir en propiedades.
-///  Se ha realizado un Renombre de los nombres de los campos a nombres mas significativos.
-///  También se ha realizado una Reordenacion de los parámetros ya que el constructor debe ir despues de la declaración de los campos y propiedades.
-///  Además se ha realizado la Eliminación de los parámetros this ya que no eran necesarios.
-///  <remarks> Estas son las Refactorizaciones del código</remarks></para>
-///  
+/// <para> Se han encapsulados los campos ya que no deben estar públicos por eso los combertir en propiedades.</para>
+/// <para> Se ha realizado un Renombre de los nombres de los campos a nombres mas significativos.</para>
+/// <para> También se ha realizado una Reordenacion de los parámetros ya que el constructor debe ir despues de la declaración de los campos y propiedades.</para>
+/// <para> Además se ha realizado la Eliminación de los parámetros this ya que no eran necesarios y del metódo VerEspecificaciones que no era utilizado.</para>
+/// <remarks> Estas son las Refactorizaciones del código</remarks>
 /// </summary>
 class Cafetera
 {
@@ -87,16 +86,6 @@ class Cafetera
         return Agua;
     }
 
-    /// <summary>
-    /// Método que nos permite cambiar las especificaciones de la cafetera
-    /// </summary>
-    /// <param name="referencia">Es un string que nos permite indicar la nueva referencia de modelo de la cafetera</param>
-    /// <param name="marca">Es un string que nos permite indicar la nueva marca de la cafetera</param>
-    public void CambiarEspecificacion(string referencia, string marca)
-    {
-        Marca = marca;
-        Referencia = referencia;
-    }
 }
 
 
